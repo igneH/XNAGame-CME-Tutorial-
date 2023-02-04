@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="FadeAnimation.cs" />
+    <Compile Include="FileManager.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
