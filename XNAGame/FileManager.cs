@@ -10,7 +10,7 @@ namespace XNAGame
     public class FileManager
     {
         enum LoadType { Attributes, Contents };
-
+        //Test
         LoadType type;
 
         List<List<string>> attributes = new List<List<string>>();
