@@ -11,6 +11,7 @@ namespace XNAGame
 {
     public class Animation
     {
+        //Test
         protected Texture2D image;
         protected string text;
         protected SpriteFont font;
