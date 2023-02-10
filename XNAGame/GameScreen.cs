@@ -13,6 +13,8 @@ namespace XNAGame
     public class GameScreen
     {
         protected ContentManager content;
+        protected List<List<string>> attributes, contents;
+
         public virtual void LoadContent(ContentManager Content)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
