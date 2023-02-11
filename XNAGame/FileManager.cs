@@ -13,8 +13,9 @@ namespace XNAGame
         
         LoadType type;
 
-        List<List<string>> attributes = new List<List<string>>();
-        List<List<string>> contents = new List<List<string>>();
+        //not needed
+        //List<List<string>> attributes = new List<List<string>>();
+        //List<List<string>> contents = new List<List<string>>();
 
         List<string> tempAttributes;
         List<string> tempContents;
@@ -33,14 +34,14 @@ namespace XNAGame
                     if (line.Contains("Load="))
                     {
                         tempAttributes = new List<string>();
-                        line.Remove(0, line.IndexOf("=") + 1);
+                        line = line.Remove(0, line.IndexOf("=") + 1);
                         type = LoadType.Attributes;
                     }
                     else
                     {
-                        tempContents = new List<string>();
                         type = LoadType.Contents;
                     }
+                    tempContents = new List<string>();
 
                     string[] lineArray = line.Split(']');
 
@@ -114,7 +115,7 @@ namespace XNAGame
                     if (type == LoadType.Contents && tempContents.Count > 0)
                     {
                         contents.Add(tempContents);
-                        attributes.Add(tempAttributes);
+                        attribtues.Add(tempAttributes);
                     }
                     }
                 }

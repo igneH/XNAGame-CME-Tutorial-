@@ -20,11 +20,15 @@ namespace XNAGame
 
         FileManager fileManager;
 
+        int imageNumber;
+
         public override void LoadContent(ContentManager Content)
         {
             base.LoadContent(Content);
             if (spriteFont == null)
                 spriteFont = content.Load<SpriteFont>("SpriteFont1");
+
+            imageNumber = 0;
 
             fileManager = new FileManager();
             fade = new List<FadeAnimation>();
@@ -48,25 +52,29 @@ namespace XNAGame
             for(int i = 0; i < fade.Count; i++)
             {
                 fade[i].LoadContent(content, images[i], "", Vector2.Zero);
-                fade[i].Scale = 1.25f;
+                fade[i].Scale = 1.7f;
+                fade[i].IsActive = true;
             }
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
+            fileManager = null;
         }
 
         public override void Update(GameTime gameTime)
         {
             keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Z))
-                ScreenManager.Instance.AddScreen(new TitleScreen());
+            //if (keyState.IsKeyDown(Keys.Z))
+            //ScreenManager.Instance.AddScreen(new TitleScreen());
+            fade[imageNumber].Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(spriteFont, "SplashScreen", new Vector2(100, 100), Color.Black);
+            //spriteBatch.DrawString(spriteFont, "SplashScreen", new Vector2(100, 100), Color.Black);
+            fade[imageNumber].Draw(spriteBatch);
         }
     }
 }

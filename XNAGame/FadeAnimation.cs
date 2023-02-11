@@ -75,9 +75,17 @@ namespace XNAGame
                     else
                         alpha += fadeSpeed * (float)gametime.ElapsedGameTime.TotalSeconds;
                     if (alpha <= 0.0f)
+                    {
                         alpha = 0.0f;
+                        increase = true;
+                    }
+                        
                     else if (alpha >= 1.0f)
+                    {
                         alpha = 1.0f;
+                        increase = false;
+                    }
+                        
                 }
                 
                 if(alpha == activateValue)
@@ -86,7 +94,8 @@ namespace XNAGame
                     timer -= gametime.ElapsedGameTime;
                     if(timer.TotalSeconds <= 0)
                     {
-                        increase = !increase;
+                        //not needed anymore [SplashScreen 2]
+                        //increase = !increase;
                         timer = defaultTime;
                         stopUpdating = false;
                     }

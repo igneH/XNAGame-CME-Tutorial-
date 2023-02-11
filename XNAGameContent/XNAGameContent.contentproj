@@ -43,8 +43,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SplashScreen\Unbenannt-1.png">
-      <Name>Unbenannt-1</Name>
+    <Compile Include="Splash\image1.png">
+      <Name>image1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
