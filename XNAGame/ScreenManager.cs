@@ -82,6 +82,21 @@ namespace XNAGame
             fade.ActivateValue = 1.0f;
         }
 
+        public void AddScreen(GameScreen screen, float alpha)
+        {
+            transition = true;
+            //newScreen not rlly needed, but if a Screen gets deleted from the stack it's needed
+            newScreen = screen;
+            fade.IsActive = true;
+            fade.Alpha = 0.0f;
+            fade.ActivateValue = 1.0f;
+            if (alpha != 1.0f)
+                fade.Alpha = 1.0f - alpha;
+            else
+                fade.Alpha = alpha;
+            fade.Increase = true;
+        }
+
         /*
          * Why Initialize, not a constructor?
          * Initzialize can be called any amount of time we want to

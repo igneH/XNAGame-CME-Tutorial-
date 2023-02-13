@@ -52,7 +52,8 @@ namespace XNAGame
             for(int i = 0; i < fade.Count; i++)
             {
                 fade[i].LoadContent(content, images[i], "", Vector2.Zero);
-                fade[i].Scale = 1.7f;
+                 // ImageWidth/2 * scale - ImageWidth/2
+                fade[i].Scale = 1.0f;
                 fade[i].IsActive = true;
             }
         }
@@ -69,6 +70,18 @@ namespace XNAGame
             //if (keyState.IsKeyDown(Keys.Z))
             //ScreenManager.Instance.AddScreen(new TitleScreen());
             fade[imageNumber].Update(gameTime);
+
+            if (fade[imageNumber].Alpha == 0.0f)
+                imageNumber++;
+
+            if(imageNumber >= fade.Count - 1 || keyState.IsKeyDown(Keys.Z))
+            {
+                
+                if (fade[imageNumber].Alpha != 1.0f)
+                    ScreenManager.Instance.AddScreen(new TitleScreen(), fade[imageNumber].Alpha);
+                else
+                    ScreenManager.Instance.AddScreen(new TitleScreen());
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
