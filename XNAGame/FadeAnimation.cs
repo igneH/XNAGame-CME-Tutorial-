@@ -14,7 +14,7 @@ namespace XNAGame
         bool increase;
         float fadeSpeed;
         TimeSpan defaultTime, timer;
-        bool startTimer;
+        //bool startTimer;
         float activateValue;
         bool stopUpdating;
         float defaultAlpha;

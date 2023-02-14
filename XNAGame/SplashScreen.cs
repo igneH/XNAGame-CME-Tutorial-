@@ -13,7 +13,7 @@ namespace XNAGame
     //A screen where f.e. the prodcution studios name shows up when starting the game
     public class SplashScreen : GameScreen
     {
-        KeyboardState keyState;
+        //KeyboardState keyState;
         SpriteFont spriteFont;
         List<FadeAnimation> fade;
         List<Texture2D> images;
@@ -22,9 +22,9 @@ namespace XNAGame
 
         int imageNumber;
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content, InputManager inputManager)
         {
-            base.LoadContent(Content);
+            base.LoadContent(Content, inputManager);
             if (spriteFont == null)
                 spriteFont = content.Load<SpriteFont>("SpriteFont1");
 
@@ -66,21 +66,19 @@ namespace XNAGame
 
         public override void Update(GameTime gameTime)
         {
-            keyState = Keyboard.GetState();
-            //if (keyState.IsKeyDown(Keys.Z))
-            //ScreenManager.Instance.AddScreen(new TitleScreen());
+            inputManager.Update();
 
             fade[imageNumber].Update(gameTime);
 
             if (fade[imageNumber].Alpha == 0.0f)
                 imageNumber++;
 
-            if(imageNumber >= fade.Count - 1 || keyState.IsKeyDown(Keys.Z))
+            if(imageNumber >= fade.Count - 1 || inputManager.KeyPressed(Keys.Z))
             {
                 if (fade[imageNumber].Alpha != 1.0f)
-                    ScreenManager.Instance.AddScreen(new TitleScreen(), fade[imageNumber].Alpha);
+                    ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager, fade[imageNumber].Alpha);
                 else
-                    ScreenManager.Instance.AddScreen(new TitleScreen());
+                    ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
             }
         }
 

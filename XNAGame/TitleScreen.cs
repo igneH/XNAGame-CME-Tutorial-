@@ -12,12 +12,12 @@ namespace XNAGame
 {
     public class TitleScreen : GameScreen
     {
-        KeyboardState keyState;
+        //KeyboardState keyState;
         SpriteFont spriteFont;
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content, InputManager inputManager)
         {
-            base.LoadContent(Content);
+            base.LoadContent(Content, inputManager);
             if (spriteFont == null)
                 spriteFont = content.Load<SpriteFont>("SpriteFont1");
         }
@@ -29,9 +29,9 @@ namespace XNAGame
 
         public override void Update(GameTime gameTime)
         {
-            keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Enter))
-                ScreenManager.Instance.AddScreen(new SplashScreen());
+            inputManager.Update();
+            if (inputManager.KeyPressed(Keys.Enter))
+                ScreenManager.Instance.AddScreen(new SplashScreen(), inputManager);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

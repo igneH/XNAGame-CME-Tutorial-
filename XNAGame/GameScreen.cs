@@ -14,17 +14,22 @@ namespace XNAGame
     {
         protected ContentManager content;
         protected List<List<string>> attributes, contents;
+        protected InputManager inputManager;
 
-        public virtual void LoadContent(ContentManager Content)
+        public virtual void LoadContent(ContentManager Content, InputManager inputManager)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
             attributes = new List<List<string>>();
             contents = new List<List<string>>();
+            this.inputManager = inputManager;
         }
 
         public virtual void UnloadContent()
         {
             content.Unload();
+            inputManager = null;
+            attributes.Clear();
+            contents.Clear();
         }
 
         public virtual void Update(GameTime gameTime)
