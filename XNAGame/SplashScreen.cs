@@ -36,7 +36,7 @@ namespace XNAGame
 
             fileManager.LoadContent("Load/Splash.cme", attributes, contents);
 
-            for(int i=0; i < attributes.Count; i++)
+            for(int i = 0; i < attributes.Count; i++)
             {
                 for(int j = 0; j < attributes[i].Count; j++)
                 {
@@ -51,9 +51,9 @@ namespace XNAGame
             }
             for(int i = 0; i < fade.Count; i++)
             {
-                fade[i].LoadContent(content, images[i], "", Vector2.Zero);
-                 // ImageWidth/2 * scale - ImageWidth/2
-                fade[i].Scale = 1.0f;
+                fade[i].LoadContent(content, images[i], "", new Vector2(-384, -216));
+                //new Vector2() -> most random numbers I've ever seen (1920:1080 -> 1152:648 = -384, -216)
+                fade[i].Scale = 0.6f;
                 fade[i].IsActive = true;
             }
         }
@@ -69,6 +69,7 @@ namespace XNAGame
             keyState = Keyboard.GetState();
             //if (keyState.IsKeyDown(Keys.Z))
             //ScreenManager.Instance.AddScreen(new TitleScreen());
+
             fade[imageNumber].Update(gameTime);
 
             if (fade[imageNumber].Alpha == 0.0f)
@@ -76,7 +77,6 @@ namespace XNAGame
 
             if(imageNumber >= fade.Count - 1 || keyState.IsKeyDown(Keys.Z))
             {
-                
                 if (fade[imageNumber].Alpha != 1.0f)
                     ScreenManager.Instance.AddScreen(new TitleScreen(), fade[imageNumber].Alpha);
                 else
@@ -86,6 +86,7 @@ namespace XNAGame
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            //not needed anymore
             //spriteBatch.DrawString(spriteFont, "SplashScreen", new Vector2(100, 100), Color.Black);
             fade[imageNumber].Draw(spriteBatch);
         }

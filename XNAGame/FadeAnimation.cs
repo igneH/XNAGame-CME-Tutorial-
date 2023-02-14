@@ -22,7 +22,11 @@ namespace XNAGame
         public TimeSpan Timer
         {
             get { return timer; }
-            set { defaultTime = value; timer = defaultTime; }
+            set 
+            { 
+                defaultTime = value; 
+                timer = defaultTime; 
+            }
         }
         public float FadeSpeed
         {
@@ -33,9 +37,7 @@ namespace XNAGame
         public override float Alpha 
         {
              get
-            {
-                return alpha;
-            }
+            { return alpha; }
             set
             {
                 alpha = value;

@@ -65,7 +65,8 @@ namespace XNAGame
                 }
             }
         }
-        public void LoadContent(string filename, List<List<string>> attribtues, List<List<string>> contents, string identifier)
+        public void LoadContent(string filename, List<List<string>> attribtues, 
+                                List<List<string>> contents, string identifier)
         {
             using (StreamReader reader = new StreamReader(filename))
             {
@@ -73,7 +74,7 @@ namespace XNAGame
                 {
                     string line = reader.ReadLine();
 
-                    if (line.Contains("EndLoad=")){
+                    if (line.Contains("EndLoad=") && line.Contains(identifier)){
                         identifierFound = false;
                         break;
                     }

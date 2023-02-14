@@ -124,7 +124,8 @@ namespace XNAGame
                 currentScreen.Update(gameTime);
             else
                 Transition(gameTime);
-            currentScreen.Update(gameTime);
+            //caused error after the last trasistion
+            //currentScreen.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -146,7 +147,7 @@ namespace XNAGame
                 currentScreen = newScreen;
                 currentScreen.LoadContent(content);
             }
-            else if ( fade.Alpha == 0.0f) 
+            else if (fade.Alpha == 0.0f) 
             {
                 transition = false;
                 fade.IsActive = false;
