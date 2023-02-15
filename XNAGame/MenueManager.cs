@@ -11,7 +11,7 @@ namespace XNAGame
 {
     public class MenuManager
     {
-        List<string> menuItmes;
+        List<string> menuItems;
         List<string> animationTypes;
         List<Texture2D> menuImages;
         List<List<Animation>> animation;
@@ -23,17 +23,73 @@ namespace XNAGame
         Vector2 position;
         int axis;
 
+        List<List<string>> attributes, contents;
+
+        List<Animation> tempAnimation;
+
         Rectangle source;
 
-        List<List<string>> attributes, contents;
+        SpriteFont font;
+
+        int itemNumber;
+
+        private void SetMenuItems()
+        {
+            for (int i = 0; i < menuItems.Count; i++)
+            {
+                if (menuItems.Count == 1)
+                    menuImages.Add(null);
+            }
+
+            for (int i = 0; i < menuImages.Count; i++)
+            {
+                if (menuItems.Count == i)
+                    menuItems.Add("");
+            }
+        }
+
+        private void SetAnimations()
+        {
+            Vector2 pos = position;
+            Vector2 dimensions;
+            for (int i = 0; i < menuImages.Count; i++)
+            {
+                for (int j = 0; j < animationTypes.Count; j++)
+                {
+                    switch (animationTypes[j])
+                    {
+                        case "Fade":
+                            tempAnimation.Add(new FadeAnimation());
+                            tempAnimation[tempAnimation.Count -1].LoadContent(content, menuImages[i],menuItems[i], position);
+                            break;
+                    }
+                }
+                animation.Add(tempAnimation);
+                tempAnimation = new List<Animation>();
+
+                dimensions = new Vector2(font.MeasureString(menuItems[i]).X +
+                    menuImages[i].Width, font.MeasureString(menuItems[i]).Y +
+                    menuImages[i].Height);
+
+                if(axis == 1)
+                {
+                    pos.X += dimensions.X;
+                }
+                else
+                {
+                    pos.Y  += dimensions.Y;
+                }
+            }
+        }
 
         public void LoadContent(ContentManager content, string id)
         {
             this.content = new ContentManager(content.ServiceProvider, "Content");
-            menuItmes = new List<string>();
+            menuItems = new List<string>();
             animationTypes = new List<string>();
             menuImages = new List<Texture2D>();
             animation = new List<List<Animation>>();
+            itemNumber = 0;
 
             fileManager.LoadContent("Load/Menus.cme", attributes, contents, id);
 
@@ -48,8 +104,11 @@ namespace XNAGame
                 {
                     switch (attributes[i][j])
                     {
+                        case "Font":
+                            font = content.Load<SpriteFont>(contents[i][j]);
+                            break;
                         case "Items":
-                            menuItmes.Add(contents[i][j]);
+                            menuItems.Add(contents[i][j]);
                             break;
                         case "Image":
                             menuImages.Add(content.Load<Texture2D>(contents[i][j]));
@@ -76,8 +135,18 @@ namespace XNAGame
             fileManager = null;
             position = Vector2.Zero;
             animation.Clear();
-            menuItmes.Clear();
+            menuItems.Clear();
             animationTypes.Clear();
+        }
+
+        public void Update(GameTime gametime)
+        {
+
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+
         }
     }
 }
