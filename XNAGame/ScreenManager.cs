@@ -130,7 +130,7 @@ namespace XNAGame
             else
                 Transition(gameTime);
             //caused error after the last trasistion
-            //currentScreen.Update(gameTime);
+            //currentScreen.Update(gameTime); <- Fuck you
         }
 
         public void Draw(SpriteBatch spriteBatch)
