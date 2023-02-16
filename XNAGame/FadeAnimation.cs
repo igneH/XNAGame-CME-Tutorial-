@@ -114,6 +114,7 @@ namespace XNAGame
             else
             {
                 alpha = defaultAlpha;
+                stopUpdating = false;
             }
         }
     }

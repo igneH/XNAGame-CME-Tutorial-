@@ -47,6 +47,7 @@ namespace XNAGame
         FadeAnimation fade;
 
         Texture2D fadeTexture;
+        Texture2D nullImage;
 
         InputManager inputManager;
 
@@ -69,6 +70,12 @@ namespace XNAGame
             get { return dimensions; }
             set { dimensions = value; }
         }
+
+        public Texture2D NullImage
+        {
+            get { return nullImage; }
+        }
+
         #endregion
 
         #region Main Methods
@@ -118,6 +125,7 @@ namespace XNAGame
             content = new ContentManager(Content.ServiceProvider, "Content");
             currentScreen.LoadContent(Content, this.inputManager);
 
+            nullImage = content.Load<Texture2D>("null");
             fadeTexture = content.Load<Texture2D>("blackdot");
             fade.LoadContent(content, fadeTexture, "", Vector2.Zero);
             fade.Scale = dimensions.X;
