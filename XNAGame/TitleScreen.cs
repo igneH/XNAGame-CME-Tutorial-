@@ -14,29 +14,37 @@ namespace XNAGame
     {
         //KeyboardState keyState;
         SpriteFont spriteFont;
+        MenuManager menu;
 
         public override void LoadContent(ContentManager Content, InputManager inputManager)
         {
             base.LoadContent(Content, inputManager);
             if (spriteFont == null)
+            {
                 spriteFont = content.Load<SpriteFont>("SpriteFont1");
+            }
+            menu = new MenuManager();
+            menu.LoadContent(content, "Title");
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
+            menu.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             inputManager.Update();
+            menu.Update(gameTime);
             if (inputManager.KeyPressed(Keys.Enter))
                 ScreenManager.Instance.AddScreen(new SplashScreen(), inputManager);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(spriteFont, "TitleScreen", new Vector2(100, 100), Color.Black);
+            menu.Draw(spriteBatch);
+            //spriteBatch.DrawString(spriteFont, "TitleScreen", new Vector2(100, 100), Color.Black);
         }
     }
 }

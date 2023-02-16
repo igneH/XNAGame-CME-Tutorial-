@@ -104,6 +104,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Load\Menus.cme">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Load\Splash.cme">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

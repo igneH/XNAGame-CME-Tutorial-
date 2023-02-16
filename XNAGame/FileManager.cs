@@ -86,11 +86,10 @@ namespace XNAGame
 
                     if (identifierFound)
                     { 
-
                     if (line.Contains("Load="))
                     {
                         tempAttributes = new List<string>();
-                        line.Remove(0, line.IndexOf("=") + 1);
+                        line = line.Remove(0, line.IndexOf("=") + 1);
                         type = LoadType.Attributes;
                     }
                     else

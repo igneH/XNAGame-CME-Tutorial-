@@ -11,8 +11,6 @@ namespace XNAGame
 {
     public class Animation
     {
-        //Test
-        //Test3
         protected Texture2D image;
         protected string text;
         protected SpriteFont font;
@@ -50,9 +48,10 @@ namespace XNAGame
             this.position = position;
             if (text != String.Empty)
             {
-                font = content.Load<SpriteFont>("AnimationFont");
+                font = content.Load<SpriteFont>("SpriteFont1");
+                Console.WriteLine("JUHU");
                 color = new Color(114, 77, 255);
-            } 
+            }
             if (image != null)
                 sourceRect = new Rectangle(0, 0, image.Width, image.Height);
             rotation = 0.0f;
