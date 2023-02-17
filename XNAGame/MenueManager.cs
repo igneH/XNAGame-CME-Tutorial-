@@ -12,8 +12,7 @@ namespace XNAGame
 {
     public class MenuManager
     {
-        List<string> menuItems;
-        List<string> animationTypes;
+        List<string> animationTypes, linkType, linkID, menuItems;
         List<Texture2D> menuImages;
         List<List<Animation>> animation;
 
@@ -117,6 +116,8 @@ namespace XNAGame
             animationTypes = new List<string>();
             menuImages = new List<Texture2D>();
             animation = new List<List<Animation>>();
+            linkID = new List<string>();
+            linkType = new List<string>();
 
             attributes = new List<List<string>>();
             contents = new List<List<string>>();
@@ -158,6 +159,12 @@ namespace XNAGame
                         case "Align":
                             align = contents[i][j];
                             break;
+                        case "LinkType":
+                            linkType.Add(contents[i][j]);
+                            break;
+                        case "LinkID":
+                            linkID.Add(contents[i][j]);
+                            break;
                     }
                 }
             }
@@ -190,6 +197,15 @@ namespace XNAGame
                     itemNumber++;
                 else if (inputManager.KeyPressed(Keys.Up, Keys.W))
                     itemNumber--;
+            }
+
+            if(inputManager.KeyPressed(Keys.Enter, Keys.Z))
+            {
+                if (linkType[itemNumber] == "Screen")
+                {
+                    Type newClass = Type.GetType("XNAGame."+linkID[itemNumber]);
+                    ScreenManager.Instance.AddScreen((GameScreen)Activator.CreateInstance(newClass), inputManager);
+                }
             }
 
             if (itemNumber < 0)

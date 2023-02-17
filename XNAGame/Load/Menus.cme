@@ -3,10 +3,10 @@
 Load=[Axis][Align][Font][Animation]
 [2][Center][MenuFont][Fade]
 
-Load=[Items]
-[New Game]
-[Load Game]
-[Options]
-[Credits]
+Load=[Items][LinkType][LinkID]
+[New Game][Screen][SplashScreen]
+[Load Game][Screen][SplashScreen]
+[Options][Screen][SplashScreen]
+[Credits][Screen][SplashScreen]
 
 EndLoad=[Title]
