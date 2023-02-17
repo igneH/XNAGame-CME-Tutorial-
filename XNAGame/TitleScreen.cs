@@ -37,8 +37,10 @@ namespace XNAGame
         {
             inputManager.Update();
             menu.Update(gameTime, inputManager);
+            /*
             if (inputManager.KeyPressed(Keys.Enter))
                 ScreenManager.Instance.AddScreen(new SplashScreen(), inputManager);
+            */
         }
 
         public override void Draw(SpriteBatch spriteBatch)
