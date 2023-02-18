@@ -1,2 +1,2 @@
-﻿Load=[Image]
-[Splash/image1]
+﻿Load=[Image][Position][Health]
+[PlayerImage1][0 0]
