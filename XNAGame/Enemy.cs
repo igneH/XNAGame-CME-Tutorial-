@@ -25,5 +25,10 @@ namespace XNAGame
         {
             base.Draw(spriteBatch);
         }
+
+        public override void Update(GameTime gameTime, InputManager inputManager)
+        {
+            
+        }
     }
 }

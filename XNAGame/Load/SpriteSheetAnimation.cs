@@ -23,6 +23,7 @@ namespace XNAGame
         public Vector2 CurrentFrame
         {
             set { currentFrame = value; }
+            get { return currentFrame; }
         }
 
         public int FrameWidth
@@ -61,10 +62,14 @@ namespace XNAGame
                     currentFrame.X++;
                     if (currentFrame.X * FrameWidth >= image.Width)
                         currentFrame.X = 0;
-
-                    sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
                 }
             }
+            else
+            {
+                frameCounter = 0;
+                currentFrame.X = 1;
+            }
+            sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

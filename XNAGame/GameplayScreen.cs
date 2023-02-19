@@ -22,8 +22,8 @@ namespace XNAGame
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-            player.Update(gameTime);
+            inputManager.Update();
+            player.Update(gameTime, inputManager);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

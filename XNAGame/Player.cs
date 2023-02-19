@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace XNAGame
 {
@@ -58,9 +59,16 @@ namespace XNAGame
             base.Draw(spriteBatch);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, InputManager inputManager)
         {
-            base.Update(gameTime);
+            moveAnimation.IsActive = true;
+            if (inputManager.KeyDown(Keys.Right, Keys.D))
+                moveAnimation.CurrentFrame = new Vector2(moveAnimation.CurrentFrame.X, 2);
+            else if (inputManager.KeyDown(Keys.Left, Keys.A))
+                moveAnimation.CurrentFrame = new Vector2(moveAnimation.CurrentFrame.X, 1);
+            else
+                moveAnimation.IsActive = false;
+            moveAnimation.Update(gameTime);
         }
     }
 }
